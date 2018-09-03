@@ -18,7 +18,7 @@ $input-margin-bottom: $spv-inter--scaleable - $spv-nudge * 2;
 
     appearance: textfield;
     background-color: $color-x-light;
-    border: 1px solid $color-mid-light;
+    border: 1px solid $color-mid;
     border-radius: $border-radius;
     box-shadow: inset 0 1px 1px $color-input-shadow;
     color: $color-dark;
@@ -181,7 +181,17 @@ $input-margin-bottom: $spv-inter--scaleable - $spv-nudge * 2;
   }
 
   [type='submit'] {
-    @extend %p-button--positive;
+    @extend %vf-button-base;
+
+    @include vf-button-pattern (
+      $button-background-color: $color-positive,
+      $button-border-color: $color-positive,
+      $button-text-color: $color-x-light,
+      $button-hover-background-color: darken($color-positive, 10%),
+      $button-hover-border-color: darken($color-positive, 10%),
+      $button-disabled-background-color: $color-positive,
+      $button-disabled-border-color: $color-positive
+    );
   }
 
   // Select styles
@@ -194,6 +204,7 @@ $input-margin-bottom: $spv-inter--scaleable - $spv-nudge * 2;
     background-size: map-get($icon-sizes, accordion);
     color: $color-dark;
     min-height: 24px;
+    padding-right: $sph-intra--expanded;
     text-indent: .01px;
     text-overflow: '';
 
@@ -232,6 +243,7 @@ $input-margin-bottom: $spv-inter--scaleable - $spv-nudge * 2;
 
   label {
     @extend %default-text;
+    width: fit-content;
   }
 
   // Accessible checkbox technique from https://medium.com/claritydesignsystem/pure-css-accessible-checkboxes-and-radios-buttons-54063e759bb3
