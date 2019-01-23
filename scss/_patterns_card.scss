@@ -109,7 +109,7 @@
       }
     }
 
-    p:not([class^='p-heading--']),
+    p:not([class*='p-heading--']),
     h5,
     h6 {
       &:last-child {
