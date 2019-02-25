@@ -18,15 +18,35 @@ $side-bar-width: 300px;
   max-width: 1400px;
 }
 
-.remove-button {
+%hover-button {
   display: none;
   position: absolute;
-  right: 1rem;
-  top: 1rem;
 
   .p-strip:hover & {
     display: block;
   }
+}
+
+.remove-button {
+  @extend %hover-button;
+  right: 1rem;
+  top: 1rem;
+}
+
+.move-up-button {
+  @extend %hover-button;
+  right: 1rem;
+  top: 4rem;
+}
+
+.move-down-button {
+  @extend %hover-button;
+  right: 1rem;
+  top: 7rem;
+}
+
+.u-mirror--y {
+  transform: rotate(180deg);
 }
 
 .global-nav {

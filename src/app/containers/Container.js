@@ -7,13 +7,16 @@ import Strip from "../components/Strip";
 
 class Container extends Component {
   generateStrips = () => {
-    const { strips, removeStrip } = this.props;
-    return strips.map(strip => (
+    const { strips, removeStrip, moveStrip } = this.props;
+    return strips.map((strip, index) => (
       <Strip
         key={strip.id}
         id={strip.id}
         type={strip.type}
         remove={removeStrip}
+        move={strips.length >= 2 ? moveStrip : undefined}
+        canMoveUp={index !== 0}
+        canMoveDown={index !== strips.length - 1}
       />
     ));
   };
@@ -52,6 +55,7 @@ class Container extends Component {
 
 Container.propTypes = {
   addStrip: PropTypes.func.isRequired,
+  moveStrip: PropTypes.func.isRequired,
   removeStrip: PropTypes.func.isRequired,
   strips: PropTypes.arrayOf(PropTypes.object).isRequired
 };
