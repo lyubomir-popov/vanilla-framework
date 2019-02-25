@@ -1,20 +1,28 @@
-import React from 'react';
+import React from "react";
 
 const Footer = () => (
   <footer className="p-footer">
     <nav className="p-footer__nav row">
       <ul className="p-footer__links">
         <li className="p-footer__item">
-          <a className="p-footer__link" href="#a">Footer link 1</a>
+          <a className="p-footer__link" href="#a">
+            Footer link 1
+          </a>
         </li>
         <li className="p-footer__item">
-          <a className="p-footer__link" href="#a">Footer link 2</a>
+          <a className="p-footer__link" href="#a">
+            Footer link 2
+          </a>
         </li>
         <li className="p-footer__item">
-          <a className="p-footer__link" href="#a">Footer link 3</a>
+          <a className="p-footer__link" href="#a">
+            Footer link 3
+          </a>
         </li>
         <li className="p-footer__item">
-          <a className="p-footer__link" href="#a">Footer link 4</a>
+          <a className="p-footer__link" href="#a">
+            Footer link 4
+          </a>
         </li>
       </ul>
       <span className="u-off-screen">

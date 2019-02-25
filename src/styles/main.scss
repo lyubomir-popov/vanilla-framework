@@ -5,6 +5,10 @@
   position: relative;
 }
 
+[class^="p-strip"].is-bordered {
+  margin-bottom: 0;
+}
+
 .container {
   border: 1px solid $color-mid-light;
   margin: 0 auto;

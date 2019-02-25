@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import Footer from "../components/Footer";
@@ -8,8 +8,15 @@ import Strip from "../components/Strip";
 class Container extends Component {
   generateStrips = () => {
     const { strips, removeStrip } = this.props;
-    return strips.map(strip => <Strip key={strip.id} id={strip.id} type={strip.type} remove={removeStrip} />)
-  }
+    return strips.map(strip => (
+      <Strip
+        key={strip.id}
+        id={strip.id}
+        type={strip.type}
+        remove={removeStrip}
+      />
+    ));
+  };
 
   render = () => {
     const { addStrip } = this.props;
@@ -22,10 +29,18 @@ class Container extends Component {
         </div>
         <div className="p-strip is-shallow">
           <div className="row">
-            <button className="p-button--positive" type="button" onClick={() => addStrip("normal")}>
+            <button
+              className="p-button--positive"
+              type="button"
+              onClick={() => addStrip("normal")}
+            >
               Add normal strip
             </button>
-            <button className="p-button--positive" type="button" onClick={() => addStrip("image")}>
+            <button
+              className="p-button--positive"
+              type="button"
+              onClick={() => addStrip("image")}
+            >
               Add image strip
             </button>
           </div>
