@@ -72,3 +72,39 @@ $side-bar-width: 300px;
     margin: 0;
   }
 }
+
+.ghost-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed $color-mid-light;
+  height: 300px;
+}
+
+.dropdown {
+  position: relative;
+
+  .dropdown__menu {
+    @extend %p-card--highlighted;
+    position: absolute;
+    left: 100%;
+    padding: 0;
+    width: 100%;
+    top: 0;
+  }
+
+  .p-list__item {
+    padding: 0;
+  }
+}
+
+.p-button--list {
+  @extend %p-button--base;
+
+  border-radius: 0;
+  margin-bottom: 0;
+  padding: $spv-intra--condensed $sph-intra--condensed;
+  text-align: left;
+  transition-duration: 0s;
+  width: 100%;
+}

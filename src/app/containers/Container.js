@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import Footer from "../components/Footer";
 import Nav from "../components/Nav";
 import Strip from "../components/Strip";
+import GhostStrip from "../components/GhostStrip";
 
 class Container extends Component {
   generateStrips = () => {
@@ -28,25 +29,8 @@ class Container extends Component {
         <div className="container">
           <Nav />
           {this.generateStrips()}
+          <GhostStrip addStrip={addStrip} />
           <Footer />
-        </div>
-        <div className="p-strip is-shallow">
-          <div className="row">
-            <button
-              className="p-button--positive"
-              type="button"
-              onClick={() => addStrip("normal")}
-            >
-              Add normal strip
-            </button>
-            <button
-              className="p-button--positive"
-              type="button"
-              onClick={() => addStrip("image")}
-            >
-              Add image strip
-            </button>
-          </div>
         </div>
       </div>
     );
