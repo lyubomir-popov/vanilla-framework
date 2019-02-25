@@ -1,2 +1,23 @@
 @import 'node_modules/vanilla-framework/scss/vanilla';
 @include vanilla;
+
+.p-strip {
+  position: relative;
+}
+
+.container {
+  border: 1px solid $color-mid-light;
+  margin: 0 auto;
+  max-width: 1400px;
+}
+
+.remove-button {
+  display: none;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+
+  .p-strip:hover & {
+    display: block;
+  }
+}
