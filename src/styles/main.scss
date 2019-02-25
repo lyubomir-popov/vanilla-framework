@@ -1,3 +1,6 @@
+$grid-max-width: 990px;
+$side-bar-width: 300px;
+
 @import 'node_modules/vanilla-framework/scss/vanilla';
 @include vanilla;
 
@@ -23,5 +26,29 @@
 
   .p-strip:hover & {
     display: block;
+  }
+}
+
+.global-nav {
+  background: #333;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  .global-nav__row {
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    margin: 0 auto;
+    max-width: $grid-max-width;
+  }
+
+  .global-nav__logo {
+    color: $color-x-light;
+    margin: 0;
+  }
+
+  .p-button--positive {
+    margin: 0;
   }
 }

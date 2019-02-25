@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import uuidv4 from "uuid/v4";
 
+import GlobalNav from "./components/GlobalNav";
 import Container from "./containers/Container";
 
 class App extends Component {
@@ -26,11 +27,7 @@ class App extends Component {
     const { strips } = this.state;
     return (
       <div className="App">
-        <section className="p-strip is-bordered">
-          <div className="row">
-            <h1>Copydoc generator</h1>
-          </div>
-        </section>
+        <GlobalNav />
         <Container
           strips={strips}
           addStrip={this.addStrip}
