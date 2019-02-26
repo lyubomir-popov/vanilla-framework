@@ -5,9 +5,21 @@ import strips from "../strips";
 import StripTypeSelect from "./StripTypeSelect";
 
 class Strip extends Component {
+  state = {
+    selectedType: undefined
+  };
+
+  static getDerivedStateFromProps = (props, state) => {
+    if (props.type !== state.selectedType) {
+      return { selectedType: props.type };
+    }
+    return null;
+  };
+
   handleSelect = e => {
     const { id, changeType } = this.props;
     changeType(id, e.target.value);
+    this.setState({ selectedType: e.target.value });
   };
 
   getStripJSX = () => {
@@ -19,7 +31,8 @@ class Strip extends Component {
   };
 
   render = () => {
-    const { id, move, remove, canMoveUp, canMoveDown, type } = this.props;
+    const { selectedType } = this.state;
+    const { id, move, remove, canMoveUp, canMoveDown } = this.props;
 
     return (
       <section className="strip-container">
@@ -57,7 +70,7 @@ class Strip extends Component {
         </div>
         <div className="strip-controls">
           <StripTypeSelect
-            selected={type}
+            selected={selectedType}
             options={strips.map(strip => ({
               name: strip.name,
               value: strip.type

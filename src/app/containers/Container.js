@@ -14,6 +14,7 @@ class Container extends Component {
         key={strip.id}
         id={strip.id}
         type={strip.type}
+        name={strip.name}
         subtype={strip.subtype}
         remove={removeStrip}
         changeType={changeStripType}

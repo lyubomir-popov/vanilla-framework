@@ -38,7 +38,7 @@ const Nav = () => (
             placeholder="Search"
             required=""
           />
-          <button type="submit" className="p-search-box__button" alt="search">
+          <button type="button" className="p-search-box__button" alt="search">
             <i className="p-icon--search" />
           </button>
         </form>
