@@ -7,7 +7,8 @@ import StripTypeSelect from "../components/StripTypeSelect";
 class Strip extends Component {
   state = {
     selectedType: undefined,
-    selectedSubtype: undefined
+    selectedSubtype: undefined,
+    border: false
   };
 
   static getDerivedStateFromProps = (props, state) => {
@@ -40,14 +41,21 @@ class Strip extends Component {
     return stripSubType.jsx;
   };
 
+  toggleBorder = () => {
+    const { border } = this.state;
+    this.setState({ border: !border });
+  };
+
   render = () => {
-    const { selectedType, selectedSubtype } = this.state;
+    const { selectedType, selectedSubtype, border } = this.state;
     const { id, move, remove, canMoveUp, canMoveDown, type } = this.props;
     const stripType = strips.find(item => item.type === type);
 
     return (
       <section className="strip-container">
-        <div className="p-strip">{this.getStripJSX()}</div>
+        <div className={`p-strip ${border ? "is-bordered" : ""}`}>
+          {this.getStripJSX()}
+        </div>
         <div className="strip-controls">
           <StripTypeSelect
             selected={selectedType}
@@ -65,6 +73,18 @@ class Strip extends Component {
             }))}
             onChange={this.selectSubtype}
           />
+          <div>
+            <label className="p-checkbox">
+              <span className="p-checkbox__text">Border</span>
+              <input
+                className="p-checkbox__input"
+                type="checkbox"
+                onClick={this.toggleBorder}
+                checked={border}
+              />
+              <span className="p-checkbox__box" />
+            </label>
+          </div>
           <div>
             <button
               type="button"
