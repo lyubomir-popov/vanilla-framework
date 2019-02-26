@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const GlobalNav = ({ editing, toggleEditing }) => (
+const GlobalNav = ({ editing, toggleEditing, generateMarkup }) => (
   <header className="global-nav">
     <div className="global-nav__row">
       <div className="global-nav__logo">Madagascar</div>
@@ -15,7 +15,7 @@ const GlobalNav = ({ editing, toggleEditing }) => (
         </button>
         <button
           type="button"
-          onClick={() => null}
+          onClick={() => generateMarkup()}
           className="p-button--positive"
         >
           Export
@@ -27,7 +27,8 @@ const GlobalNav = ({ editing, toggleEditing }) => (
 
 GlobalNav.propTypes = {
   editing: PropTypes.bool.isRequired,
-  toggleEditing: PropTypes.bool.isRequired
+  generateMarkup: PropTypes.func.isRequired,
+  toggleEditing: PropTypes.func.isRequired
 };
 
 export default GlobalNav;

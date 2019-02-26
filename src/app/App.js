@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import uuidv4 from "uuid/v4";
 
 import GlobalNav from "./components/GlobalNav";
-import Container from "./containers/Container";
+import Strip from "./containers/Strip";
+import Nav from "./components/Nav";
+import GhostStrip from "./containers/GhostStrip";
+import Footer from "./components/Footer";
 import stripsData from "./strips";
 
 const moveItem = (origArr, fromIndex, toIndex) => {
@@ -16,8 +19,11 @@ const moveItem = (origArr, fromIndex, toIndex) => {
 class App extends Component {
   state = {
     strips: [],
-    editing: true
+    editing: true,
+    markup: ""
   };
+
+  container = React.createRef();
 
   addStrip = (type, subtype) => {
     const { strips } = this.state;
@@ -80,20 +86,57 @@ class App extends Component {
     this.setState({ editing: !editing });
   };
 
-  render = () => {
+  generateStrips = () => {
     const { strips, editing } = this.state;
+
+    return strips.map((strip, index) => (
+      <Strip
+        editing={editing}
+        key={strip.id}
+        id={strip.id}
+        type={strip.type}
+        name={strip.name}
+        subtype={strip.subtype}
+        remove={this.removeStrip}
+        changeType={this.changeStripType}
+        changeSubtype={this.changeStripSubtype}
+        move={strips.length >= 2 ? this.moveStrip : undefined}
+        canMoveUp={index !== 0}
+        canMoveDown={index !== strips.length - 1}
+      />
+    ));
+  };
+
+  generateMarkup = () => {
+    const { container } = this;
+    if (container.current) {
+      this.setState({ markup: container.current.innerHTML });
+    }
+  };
+
+  render = () => {
+    const { editing, markup } = this.state;
+
     return (
       <div className="App">
-        <GlobalNav editing={editing} toggleEditing={this.toggleEditing} />
-        <Container
+        <GlobalNav
           editing={editing}
-          strips={strips}
-          addStrip={this.addStrip}
-          removeStrip={this.removeStrip}
-          moveStrip={this.moveStrip}
-          changeStripType={this.changeStripType}
-          changeStripSubtype={this.changeStripSubtype}
+          toggleEditing={this.toggleEditing}
+          generateMarkup={this.generateMarkup}
         />
+        <div>
+          <Nav />
+          <div ref={this.container}>{this.generateStrips()}</div>
+          {editing && <GhostStrip addStrip={this.addStrip} />}
+          <Footer />
+        </div>
+        {markup && (
+          <div className="row">
+            <pre>
+              <code>{markup}</code>
+            </pre>
+          </div>
+        )}
       </div>
     );
   };

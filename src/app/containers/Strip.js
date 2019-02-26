@@ -88,7 +88,7 @@ class Strip extends Component {
                 <input
                   className="p-checkbox__input"
                   type="checkbox"
-                  onClick={this.toggleBorder}
+                  onChange={this.toggleBorder}
                   checked={border}
                 />
                 <span className="p-checkbox__box" />
