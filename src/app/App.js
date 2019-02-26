@@ -15,7 +15,8 @@ const moveItem = (origArr, fromIndex, toIndex) => {
 
 class App extends Component {
   state = {
-    strips: []
+    strips: [],
+    editing: true
   };
 
   addStrip = (type, subtype) => {
@@ -74,12 +75,18 @@ class App extends Component {
     this.setState({ strips: newStrips });
   };
 
+  toggleEditing = () => {
+    const { editing } = this.state;
+    this.setState({ editing: !editing });
+  };
+
   render = () => {
-    const { strips } = this.state;
+    const { strips, editing } = this.state;
     return (
       <div className="App">
-        <GlobalNav />
+        <GlobalNav editing={editing} toggleEditing={this.toggleEditing} />
         <Container
+          editing={editing}
           strips={strips}
           addStrip={this.addStrip}
           removeStrip={this.removeStrip}

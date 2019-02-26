@@ -13,10 +13,12 @@ class Container extends Component {
       removeStrip,
       moveStrip,
       changeStripType,
-      changeStripSubtype
+      changeStripSubtype,
+      editing
     } = this.props;
     return strips.map((strip, index) => (
       <Strip
+        editing={editing}
         key={strip.id}
         id={strip.id}
         type={strip.type}
@@ -33,13 +35,13 @@ class Container extends Component {
   };
 
   render = () => {
-    const { addStrip } = this.props;
+    const { addStrip, editing } = this.props;
     return (
       <div>
         <div className="container">
           <Nav />
           {this.generateStrips()}
-          <GhostStrip addStrip={addStrip} />
+          {editing && <GhostStrip addStrip={addStrip} />}
           <Footer />
         </div>
       </div>
@@ -53,7 +55,8 @@ Container.propTypes = {
   removeStrip: PropTypes.func.isRequired,
   changeStripType: PropTypes.func.isRequired,
   changeStripSubtype: PropTypes.func.isRequired,
-  strips: PropTypes.arrayOf(PropTypes.object).isRequired
+  strips: PropTypes.arrayOf(PropTypes.object).isRequired,
+  editing: PropTypes.bool.isRequired
 };
 
 export default Container;

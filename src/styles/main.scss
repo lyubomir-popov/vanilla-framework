@@ -216,3 +216,21 @@ $color-light-new: #e5e5e5;
 .p-checkbox__text {
   padding-left: $sph-intra;
 }
+
+.pseudo-border {
+  @extend %vf-pseudo-border--bottom;
+}
+
+.p-button--link {
+  @extend %p-button--base;
+
+  color: $color-x-light;
+  margin-bottom: 0;
+  padding: 0;
+  line-height: 1.25rem;
+
+  &:hover {
+      background-color: inherit;
+      text-decoration: underline;
+  }
+}
