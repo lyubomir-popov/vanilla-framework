@@ -13,10 +13,10 @@ class Dropdown extends Component {
     this.setState({ open: !open });
   };
 
-  handleClick = type => {
+  handleClick = (type, subtype) => {
     const { addStrip } = this.props;
     this.toggleOpen();
-    addStrip(type);
+    addStrip(type, subtype);
   };
 
   render = () => {
@@ -43,7 +43,9 @@ class Dropdown extends Component {
                   <button
                     type="button"
                     className="p-button--list"
-                    onClick={() => this.handleClick(strip.type)}
+                    onClick={() =>
+                      this.handleClick(strip.type, strip.subtypes[0].name)
+                    }
                   >
                     {strip.name}
                   </button>

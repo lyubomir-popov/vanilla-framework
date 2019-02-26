@@ -1,42 +1,74 @@
-import React, { Fragment } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 
 import strips from "../strips";
+import StripTypeSelect from "./StripTypeSelect";
 
-const Strip = ({ id, type, remove, move, canMoveUp, canMoveDown }) => (
-  <section className="p-strip">
-    {strips.find(strip => strip.type === type).jsx}
-    <button
-      type="button"
-      className="p-button--base remove-button u-no-margin"
-      onClick={() => remove(id)}
-    >
-      <i className="p-icon--close" />
-    </button>
-    {move && (
-      <Fragment>
-        {canMoveUp && (
+class Strip extends Component {
+  handleSelect = e => {
+    const { id, changeType } = this.props;
+    changeType(id, e.target.value);
+  };
+
+  getStripJSX = () => {
+    const { type, subtype } = this.props;
+    const stripType = strips.find(item => item.type === type);
+    const stripSubType = stripType.subtypes.find(item => item.name === subtype);
+
+    return stripSubType.jsx;
+  };
+
+  render = () => {
+    const { id, move, remove, canMoveUp, canMoveDown, type } = this.props;
+
+    return (
+      <section className="strip-container">
+        <div className="p-strip">
+          {this.getStripJSX()}
           <button
             type="button"
-            className="p-button--base move-up-button u-no-margin"
-            onClick={() => move(id, "up")}
+            className="p-button--base remove-button u-no-margin"
+            onClick={() => remove(id)}
           >
-            <i className="p-icon--chevron u-mirror--y" />
+            <i className="p-icon--close" />
           </button>
-        )}
-        {canMoveDown && (
-          <button
-            type="button"
-            className="p-button--base move-down-button u-no-margin"
-            onClick={() => move(id, "down")}
-          >
-            <i className="p-icon--chevron" />
-          </button>
-        )}
-      </Fragment>
-    )}
-  </section>
-);
+          {move && (
+            <Fragment>
+              {canMoveUp && (
+                <button
+                  type="button"
+                  className="p-button--base move-up-button u-no-margin"
+                  onClick={() => move(id, "up")}
+                >
+                  <i className="p-icon--chevron u-mirror--y" />
+                </button>
+              )}
+              {canMoveDown && (
+                <button
+                  type="button"
+                  className="p-button--base move-down-button u-no-margin"
+                  onClick={() => move(id, "down")}
+                >
+                  <i className="p-icon--chevron" />
+                </button>
+              )}
+            </Fragment>
+          )}
+        </div>
+        <div className="strip-controls">
+          <StripTypeSelect
+            selected={type}
+            options={strips.map(strip => ({
+              name: strip.name,
+              value: strip.type
+            }))}
+            onChange={this.handleSelect}
+          />
+        </div>
+      </section>
+    );
+  };
+}
 
 Strip.propTypes = {
   canMoveDown: PropTypes.bool.isRequired,
@@ -44,7 +76,9 @@ Strip.propTypes = {
   id: PropTypes.string.isRequired,
   move: PropTypes.func,
   remove: PropTypes.func.isRequired,
-  type: PropTypes.string.isRequired
+  type: PropTypes.string.isRequired,
+  subtype: PropTypes.string.isRequired,
+  changeType: PropTypes.func.isRequired
 };
 
 Strip.defaultProps = {

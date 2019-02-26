@@ -8,13 +8,15 @@ import GhostStrip from "../components/GhostStrip";
 
 class Container extends Component {
   generateStrips = () => {
-    const { strips, removeStrip, moveStrip } = this.props;
+    const { strips, removeStrip, moveStrip, changeStripType } = this.props;
     return strips.map((strip, index) => (
       <Strip
         key={strip.id}
         id={strip.id}
         type={strip.type}
+        subtype={strip.subtype}
         remove={removeStrip}
+        changeType={changeStripType}
         move={strips.length >= 2 ? moveStrip : undefined}
         canMoveUp={index !== 0}
         canMoveDown={index !== strips.length - 1}
@@ -41,6 +43,7 @@ Container.propTypes = {
   addStrip: PropTypes.func.isRequired,
   moveStrip: PropTypes.func.isRequired,
   removeStrip: PropTypes.func.isRequired,
+  changeStripType: PropTypes.func.isRequired,
   strips: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 

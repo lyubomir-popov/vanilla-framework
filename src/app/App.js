@@ -3,6 +3,7 @@ import uuidv4 from "uuid/v4";
 
 import GlobalNav from "./components/GlobalNav";
 import Container from "./containers/Container";
+import stripsData from "./strips";
 
 const moveItem = (origArr, fromIndex, toIndex) => {
   const arr = [...origArr];
@@ -17,11 +18,12 @@ class App extends Component {
     strips: []
   };
 
-  addStrip = type => {
+  addStrip = (type, subtype) => {
     const { strips } = this.state;
     const newStrip = {
       id: uuidv4(),
-      type
+      type,
+      subtype
     };
     this.setState({ strips: [...strips, newStrip] });
   };
@@ -41,6 +43,22 @@ class App extends Component {
     }
   };
 
+  changeStripType = (id, type) => {
+    const { strips } = this.state;
+    const newStrips = strips.map(strip => {
+      if (strip.id === id) {
+        return {
+          ...strip,
+          type,
+          subtype: stripsData.find(item => item.type === type).subtypes[0].name
+        };
+      }
+      return strip;
+    });
+
+    this.setState({ strips: newStrips });
+  };
+
   render = () => {
     const { strips } = this.state;
     return (
@@ -51,6 +69,7 @@ class App extends Component {
           addStrip={this.addStrip}
           removeStrip={this.removeStrip}
           moveStrip={this.moveStrip}
+          changeStripType={this.changeStripType}
         />
       </div>
     );
