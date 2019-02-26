@@ -18,7 +18,7 @@ class GhostStrip extends Component {
         <div className="strip-controls">
           <select value="" onChange={e => this.handleSelect(e)}>
             <option value="" disabled>
-              Please select a strip type
+              Add a new strip
             </option>
             {strips.map(option => (
               <option key={option.type} value={option.type}>

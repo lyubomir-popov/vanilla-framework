@@ -59,6 +59,21 @@ class App extends Component {
     this.setState({ strips: newStrips });
   };
 
+  changeStripSubtype = (id, subtype) => {
+    const { strips } = this.state;
+    const newStrips = strips.map(strip => {
+      if (strip.id === id) {
+        return {
+          ...strip,
+          subtype
+        };
+      }
+      return strip;
+    });
+
+    this.setState({ strips: newStrips });
+  };
+
   render = () => {
     const { strips } = this.state;
     return (
@@ -70,6 +85,7 @@ class App extends Component {
           removeStrip={this.removeStrip}
           moveStrip={this.moveStrip}
           changeStripType={this.changeStripType}
+          changeStripSubtype={this.changeStripSubtype}
         />
       </div>
     );

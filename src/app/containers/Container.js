@@ -3,12 +3,18 @@ import PropTypes from "prop-types";
 
 import Footer from "../components/Footer";
 import Nav from "../components/Nav";
-import Strip from "../components/Strip";
-import GhostStrip from "../components/GhostStrip";
+import Strip from "./Strip";
+import GhostStrip from "./GhostStrip";
 
 class Container extends Component {
   generateStrips = () => {
-    const { strips, removeStrip, moveStrip, changeStripType } = this.props;
+    const {
+      strips,
+      removeStrip,
+      moveStrip,
+      changeStripType,
+      changeStripSubtype
+    } = this.props;
     return strips.map((strip, index) => (
       <Strip
         key={strip.id}
@@ -18,6 +24,7 @@ class Container extends Component {
         subtype={strip.subtype}
         remove={removeStrip}
         changeType={changeStripType}
+        changeSubtype={changeStripSubtype}
         move={strips.length >= 2 ? moveStrip : undefined}
         canMoveUp={index !== 0}
         canMoveDown={index !== strips.length - 1}
@@ -45,6 +52,7 @@ Container.propTypes = {
   moveStrip: PropTypes.func.isRequired,
   removeStrip: PropTypes.func.isRequired,
   changeStripType: PropTypes.func.isRequired,
+  changeStripSubtype: PropTypes.func.isRequired,
   strips: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
