@@ -159,7 +159,7 @@
     padding-top: map-get($nudges, nudge--small) + map-get($browser-rounding-compensations, small) + $sp-unit;
   }
 
-  .p-label--capitals {
+  .p-label--capitalized {
     @extend %x-small-text;
 
     font-weight: $font-weight-bold;
