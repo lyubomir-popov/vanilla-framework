@@ -3,13 +3,13 @@ $color-transparent: transparent !default;
 
 // Generic gray values (used in elements that have not been themed yet)
 $color-x-light: #fff !default;
-$color-light: #f7f7f7 !default;
-$color-mid-x-light: #e5e5e5 !default;
-$color-mid-light: #cdcdcd !default;
-$color-mid: #999 !default;
-$color-mid-dark: #666 !default;
-$color-dark: #111 !default;
-$color-x-dark: #000 !default;
+$color-light: hsl(0, 0%, 97%) !default;
+$color-mid-x-light: hsl(0, 0%, 90%) !default;
+$color-mid-light: hsl(0, 0%, 85%) !default;
+$color-mid: hsl(0, 0%, 60%) !default;
+$color-mid-dark: hsl(0, 0%, 40%) !default;
+$color-dark: hsl(0, 0%, 7%) !default;
+$color-x-dark: hsl(0, 0%, 0%) !default;
 $color-input-shadow: rgba($color-x-dark, 0.12) !default;
 
 // SEMANTIC COLOURS
@@ -20,7 +20,6 @@ $color-information: #24598f !default;
 
 // STATE VARIABLES
 $disabled-element-opacity: 0.33;
-
 $shadow-opacity: 0.2;
 
 // Link colors
@@ -83,7 +82,7 @@ $colors--light-theme--background-active: rgba($color-x-dark, $active-background-
 $colors--light-theme--background-hover: rgba($color-x-dark, $hover-background-opacity-amount) !default;
 $colors--light-theme--background-overlay: transparentize($color-dark, 0.15) !default;
 
-$colors--light-theme--border-default: rgba($color-x-dark, 0.2) !default;
+$colors--light-theme--border-default: rgba($color-x-dark, 0.15) !default;
 $colors--light-theme--border-high-contrast: rgba($color-x-dark, 0.56) !default;
 $colors--light-theme--border-low-contrast: rgba($color-x-dark, 0.1) !default;
 
@@ -99,7 +98,7 @@ $colors--dark-theme--background-active: rgba($colors--dark-theme--text-default, 
 $colors--dark-theme--background-hover: rgba($colors--dark-theme--text-default, $hover-background-opacity-amount) !default;
 $colors--dark-theme--background-overlay: transparentize($color-dark, 0.15) !default;
 
-$colors--dark-theme--border-default: rgba($colors--dark-theme--text-default, 0.2) !default;
+$colors--dark-theme--border-default: rgba($colors--dark-theme--text-default, 0.15) !default;
 $colors--dark-theme--border-high-contrast: rgba($colors--dark-theme--text-default, 0.4) !default;
 $colors--dark-theme--border-low-contrast: rgba($colors--dark-theme--text-default, 0.1) !default;
 
